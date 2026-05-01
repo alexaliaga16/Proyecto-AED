@@ -8,5 +8,7 @@ int main() {
     sm.insert(6,'D', "desde matrix");
     sm.print();
     std::cout << sm.query(1, 'A') << std::endl;
+    sm.modify(3,'B', "C++");
+    sm.print();
     return 0;
 }

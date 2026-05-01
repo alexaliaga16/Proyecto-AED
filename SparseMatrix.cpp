@@ -36,7 +36,7 @@ void SparseMatrix::insert(int row, char col, std::string value)
             newNode->nextInRow = curr;
             headerRow[row] = newNode;
         }
-        else 
+        else
         {
             prev->nextInRow = newNode;
             newNode->nextInRow = curr;
@@ -45,7 +45,7 @@ void SparseMatrix::insert(int row, char col, std::string value)
     //*Para columnas
     curr = headerCol[col - 'A'];
     prev = NULL;
-    if(headerCol[col - 'A'] == NULL)
+    if (headerCol[col - 'A'] == NULL)
     {
         headerCol[col - 'A'] = newNode;
     }
@@ -61,7 +61,7 @@ void SparseMatrix::insert(int row, char col, std::string value)
             newNode->nextInCol = curr;
             headerCol[col - 'A'] = newNode;
         }
-        else 
+        else
         {
             prev->nextInCol = newNode;
             newNode->nextInCol = curr;
@@ -69,12 +69,16 @@ void SparseMatrix::insert(int row, char col, std::string value)
     }
 }
 
-void SparseMatrix::print() {
-    for (int i = 0; i < MAX_ROWS; i++) {
-        if (headerRow[i] != NULL) {
+void SparseMatrix::print()
+{
+    for (int i = 0; i < MAX_ROWS; i++)
+    {
+        if (headerRow[i] != NULL)
+        {
             std::cout << "Fila " << i << ": ";
-            Node* curr = headerRow[i];
-            while (curr != NULL) {
+            Node *curr = headerRow[i];
+            while (curr != NULL)
+            {
                 std::cout << "(" << curr->col << ", " << curr->value << ") ";
                 curr = curr->nextInRow;
             }
@@ -83,19 +87,39 @@ void SparseMatrix::print() {
     }
 }
 
-std::string SparseMatrix::query(int row, char col) 
+std::string SparseMatrix::query(int row, char col)
 {
-    Node* curr = headerRow[row];
-    while (curr != NULL) 
+    Node *curr = headerRow[row];
+    while (curr != NULL)
     {
         if (curr->col == col)
         {
             return "Valor de celda: " + curr->value;
         }
-        else 
+        else
         {
             curr = curr->nextInRow;
         }
     }
     return "Celda Vacia";
+}
+
+void SparseMatrix::modify(int row, char col, std::string newValue)
+{
+    Node *curr = headerRow[row];
+    while (curr != NULL)
+    {
+        if (curr->row == row && curr->col == col)
+        {
+            curr->value = newValue;
+            std::cout << "Valor cambiado exitosamente en (" << row << ", " << col << ")" << std::endl;
+            return;
+        }
+        else
+        {
+            curr = curr->nextInRow;
+        }
+    }
+    std::cout << "Celda vacía, insertando valor..." << std::endl;
+    insert(row, col, newValue);
 }

@@ -17,4 +17,6 @@ public:
     void print();
 
     std::string query(int row, char col);
+
+    void modify(int row, char col, std::string newValue);
 };
