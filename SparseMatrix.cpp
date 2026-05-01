@@ -123,3 +123,67 @@ void SparseMatrix::modify(int row, char col, std::string newValue)
     std::cout << "Celda vacía, insertando valor..." << std::endl;
     insert(row, col, newValue);
 }
+
+void SparseMatrix::deleteCell(int row, char col)
+{
+    Node *curr = headerRow[row];
+    Node *prev = NULL;
+
+    while (curr != NULL)
+    {
+        if (curr->col == col)
+        {
+            Node *toDelete = curr;
+
+            // desconecta de fila
+            if (prev == NULL)
+                headerRow[row] = curr->nextInRow;
+            else
+                prev->nextInRow = curr->nextInRow;
+
+            // desconecta de columna
+            Node *curr2 = headerCol[col - 'A'];
+            Node *prev2 = NULL;
+            while (curr2 != NULL)
+            {
+                if (curr2->row == row)
+                {
+                    if (prev2 == NULL)
+                        headerCol[col - 'A'] = curr2->nextInCol;
+                    else
+                        prev2->nextInCol = curr2->nextInCol;
+                    break;
+                }
+                prev2 = curr2;
+                curr2 = curr2->nextInCol;
+            }
+
+            delete toDelete;
+            return;
+        }
+        else
+        {
+            prev = curr;
+            curr = curr->nextInRow;
+        }
+    }
+    std::cout << "ERROR: Celda no encontrada" << std::endl;
+}
+
+void SparseMatrix::deleteRow(int row)
+{
+    if (headerRow[row] == NULL)
+    {
+        std::cout << "ERROR: Fila vacia" << std::endl;
+        return;
+    }
+    Node *curr = headerRow[row];
+    while (curr != NULL)
+    {
+
+        Node *next = curr->nextInRow;
+        deleteCell(curr->row, curr->col);
+        curr = next;
+    }
+}
+

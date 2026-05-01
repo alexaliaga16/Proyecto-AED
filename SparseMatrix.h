@@ -19,4 +19,8 @@ public:
     std::string query(int row, char col);
 
     void modify(int row, char col, std::string newValue);
+
+    void deleteCell(int row, char col);
+
+    void deleteRow(int row);
 };
