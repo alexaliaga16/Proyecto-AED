@@ -1,0 +1,3 @@
+/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/main.dir
+/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/edit_cache.dir
+/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/rebuild_cache.dir
