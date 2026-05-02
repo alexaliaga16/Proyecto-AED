@@ -9,10 +9,6 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "main_autogen/timestamp" "custom" "main_autogen/deps"
-  "/Users/cardenas/Desktop/Proyecto aed/MainWindow.cpp" "CMakeFiles/main.dir/MainWindow.cpp.o" "gcc" "CMakeFiles/main.dir/MainWindow.cpp.o.d"
-  "/Users/cardenas/Desktop/Proyecto aed/SparseMatrix.cpp" "CMakeFiles/main.dir/SparseMatrix.cpp.o" "gcc" "CMakeFiles/main.dir/SparseMatrix.cpp.o.d"
-  "/Users/cardenas/Desktop/Proyecto aed/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
-  "/Users/cardenas/Desktop/Proyecto aed/build/main_autogen/mocs_compilation.cpp" "CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

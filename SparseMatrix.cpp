@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+// Inicializa todos los encabezados de filas y columnas en NULL
 SparseMatrix::SparseMatrix()
 {
     for (int i = 0; i < MAX_ROWS; i++)
@@ -14,15 +15,27 @@ SparseMatrix::SparseMatrix()
     }
 }
 
+// Inserta un nodo en (row, col) manteniendo orden ascendente; si ya existe, actualiza su valor
 void SparseMatrix::insert(int row, char col, std::string value)
 {
+    // Si la celda ya existe en la fila, solo actualiza el valor y sale
+    Node* curr = headerRow[row];
+    while (curr != NULL) {
+        if (curr->col == col) {
+            curr->value = value;
+            return;
+        }
+        curr = curr->nextInRow;
+    }
+
     Node *newNode = new Node(row, col, value);
-    Node *curr = headerRow[row];
+    curr = headerRow[row];
     Node *prev = NULL;
-    //* Para filas
+
+    // Inserción ordenada por columna en la lista de la fila
     if (headerRow[row] == NULL)
     {
-        headerRow[row] = newNode;
+        headerRow[row] = newNode; // primer nodo en la fila
     }
     else
     {
@@ -33,21 +46,24 @@ void SparseMatrix::insert(int row, char col, std::string value)
         }
         if (prev == NULL)
         {
+            // nuevo nodo va al inicio de la fila
             newNode->nextInRow = curr;
             headerRow[row] = newNode;
         }
         else
         {
+            // inserción entre prev y curr
             prev->nextInRow = newNode;
             newNode->nextInRow = curr;
         }
     }
-    //*Para columnas
+
+    // Inserción ordenada por fila en la lista de la columna
     curr = headerCol[col - 'A'];
     prev = NULL;
     if (headerCol[col - 'A'] == NULL)
     {
-        headerCol[col - 'A'] = newNode;
+        headerCol[col - 'A'] = newNode; // primer nodo en la columna
     }
     else
     {
@@ -58,17 +74,20 @@ void SparseMatrix::insert(int row, char col, std::string value)
         }
         if (prev == NULL)
         {
+            // nuevo nodo va al inicio de la columna
             newNode->nextInCol = curr;
             headerCol[col - 'A'] = newNode;
         }
         else
         {
+            // inserción entre prev y curr
             prev->nextInCol = newNode;
             newNode->nextInCol = curr;
         }
     }
 }
 
+// Imprime todas las filas con al menos un nodo, con su columna y valor
 void SparseMatrix::print()
 {
     for (int i = 0; i < MAX_ROWS; i++)
@@ -87,6 +106,7 @@ void SparseMatrix::print()
     }
 }
 
+// Busca el valor en (row, col) recorriendo la lista de la fila
 std::string SparseMatrix::query(int row, char col)
 {
     Node *curr = headerRow[row];
@@ -104,6 +124,7 @@ std::string SparseMatrix::query(int row, char col)
     return "Celda Vacia";
 }
 
+// Modifica el valor en (row, col); si la celda no existe, la inserta
 void SparseMatrix::modify(int row, char col, std::string newValue)
 {
     Node *curr = headerRow[row];
@@ -124,6 +145,7 @@ void SparseMatrix::modify(int row, char col, std::string newValue)
     insert(row, col, newValue);
 }
 
+// Elimina el nodo en (row, col) desconectándolo de la lista de su fila y de su columna
 void SparseMatrix::deleteCell(int row, char col)
 {
     Node *curr = headerRow[row];
@@ -135,13 +157,13 @@ void SparseMatrix::deleteCell(int row, char col)
         {
             Node *toDelete = curr;
 
-            // desconecta de fila
+            // Desconecta el nodo de la lista de su fila
             if (prev == NULL)
-                headerRow[row] = curr->nextInRow;
+                headerRow[row] = curr->nextInRow; // era el primer nodo de la fila
             else
-                prev->nextInRow = curr->nextInRow;
+                prev->nextInRow = curr->nextInRow; // bypass del nodo a eliminar
 
-            // desconecta de columna
+            // Desconecta el nodo de la lista de su columna
             Node *curr2 = headerCol[col - 'A'];
             Node *prev2 = NULL;
             while (curr2 != NULL)
@@ -149,9 +171,9 @@ void SparseMatrix::deleteCell(int row, char col)
                 if (curr2->row == row)
                 {
                     if (prev2 == NULL)
-                        headerCol[col - 'A'] = curr2->nextInCol;
+                        headerCol[col - 'A'] = curr2->nextInCol; // era el primer nodo de la columna
                     else
-                        prev2->nextInCol = curr2->nextInCol;
+                        prev2->nextInCol = curr2->nextInCol; // bypass del nodo a eliminar
                     break;
                 }
                 prev2 = curr2;
@@ -170,6 +192,7 @@ void SparseMatrix::deleteCell(int row, char col)
     std::cout << "ERROR: Celda no encontrada" << std::endl;
 }
 
+// Elimina todos los nodos de una fila iterando sobre su lista enlazada
 void SparseMatrix::deleteRow(int row)
 {
     if (headerRow[row] == NULL)
@@ -180,10 +203,151 @@ void SparseMatrix::deleteRow(int row)
     Node *curr = headerRow[row];
     while (curr != NULL)
     {
-
-        Node *next = curr->nextInRow;
+        Node *next = curr->nextInRow; // guarda el siguiente antes de eliminar
         deleteCell(curr->row, curr->col);
         curr = next;
     }
 }
 
+// Elimina todos los nodos de una columna iterando sobre su lista enlazada
+void SparseMatrix::deleteCol(char col)
+{
+    if (headerCol[col - 'A'] == NULL)
+    {
+        std::cout << "ERROR: Columna Vacia" << std::endl;
+        return;
+    }
+    Node* curr = headerCol[col-'A'];
+    while (curr != NULL)
+    {
+        Node *next = curr->nextInCol; // guarda el siguiente antes de eliminar
+        deleteCell(curr->row, curr->col);
+        curr = next;
+    }
+}
+
+// Elimina todas las celdas dentro del rango rectangular [rowStart..rowEnd, colStart..colEnd]
+void SparseMatrix::deleteRange(int rowStart, int rowEnd, char colStart, char colEnd)
+{
+    for (int i = rowStart; i <= rowEnd; i++)
+        for (char c = colStart; c <= colEnd; c++)
+            deleteCell(i, c);
+}
+
+// Suma los valores numéricos del rango; las celdas con texto no numérico se ignoran
+double SparseMatrix::sum(int rowStart, int rowEnd, char colStart, char colEnd)
+{
+    double total = 0;
+    for (int i = rowStart; i <= rowEnd; i++)
+    {
+        Node* curr = headerRow[i];
+        while (curr != NULL)
+        {
+            if (curr->col >= colStart && curr->col <= colEnd)
+            {
+                try { total += std::stod(curr->value); }
+                catch (...) {} // ignora celdas con valor no numérico
+            }
+            curr = curr->nextInRow;
+        }
+    }
+    return total;
+}
+
+// Calcula el promedio de valores numéricos en el rango; retorna 0 si no hay ninguno
+double SparseMatrix::average(int rowStart, int rowEnd, char colStart, char colEnd)
+{
+    double total = 0;
+    int count = 0;
+    for (int i = rowStart; i <= rowEnd; i++)
+    {
+        Node* curr = headerRow[i];
+        while (curr != NULL)
+        {
+            if (curr->col >= colStart && curr->col <= colEnd)
+            {
+                try { total += std::stod(curr->value); count++; }
+                catch (...) {} // ignora celdas con valor no numérico
+            }
+            curr = curr->nextInRow;
+        }
+    }
+    if (count == 0) { std::cout << "ERROR: No hay valores numéricos" << std::endl; return 0; }
+    return total / count;
+}
+
+// Retorna el máximo valor numérico en el rango; retorna 0 si no hay valores numéricos
+double SparseMatrix::maxVal(int rowStart, int rowEnd, char colStart, char colEnd)
+{
+    double result = -1e9;
+    bool found = false;
+    for (int i = rowStart; i <= rowEnd; i++)
+    {
+        Node* curr = headerRow[i];
+        while (curr != NULL)
+        {
+            if (curr->col >= colStart && curr->col <= colEnd)
+            {
+                try {
+                    double val = std::stod(curr->value);
+                    if (val > result) { result = val; found = true; }
+                }
+                catch (...) {} // ignora celdas no numéricas
+            }
+            curr = curr->nextInRow;
+        }
+    }
+    if (!found) { std::cout << "ERROR: No hay valores numéricos" << std::endl; return 0; }
+    return result;
+}
+
+// Retorna el mínimo valor numérico en el rango; retorna 0 si no hay valores numéricos
+double SparseMatrix::minVal(int rowStart, int rowEnd, char colStart, char colEnd)
+{
+    double result = 1e9;
+    bool found = false;
+    for (int i = rowStart; i <= rowEnd; i++)
+    {
+        Node* curr = headerRow[i];
+        while (curr != NULL)
+        {
+            if (curr->col >= colStart && curr->col <= colEnd)
+            {
+                try {
+                    double val = std::stod(curr->value);
+                    if (val < result) { result = val; found = true; }
+                }
+                catch (...) {} // ignora celdas no numéricas
+            }
+            curr = curr->nextInRow;
+        }
+    }
+    if (!found) { std::cout << "ERROR: No hay valores numéricos" << std::endl; return 0; }
+    return result;
+}
+
+// Imprime los nodos de una fila en orden ascendente de columna
+void SparseMatrix::printRow(int row)
+{
+    if (headerRow[row] == NULL) { std::cout << "Fila vacía" << std::endl; return; }
+    Node* curr = headerRow[row];
+    while (curr != NULL)
+    {
+        std::cout << "(" << curr->col << ", " << curr->value << ") ";
+        curr = curr->nextInRow;
+    }
+    std::cout << std::endl;
+}
+
+// Imprime los nodos de una columna en orden ascendente de fila
+void SparseMatrix::printCol(char col)
+{
+    if (headerCol[col - 'A'] == NULL) { std::cout << "Columna vacía" << std::endl; return; }
+    Node* curr = headerCol[col - 'A'];
+    while (curr != NULL)
+    {
+        std::cout << "(" << curr->row << ", " << curr->value << ") ";
+        curr = curr->nextInCol;
+    }
+    std::cout << std::endl;
+}

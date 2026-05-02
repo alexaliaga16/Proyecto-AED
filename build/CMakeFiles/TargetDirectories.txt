@@ -1,3 +1,5 @@
 /Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/main.dir
 /Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/edit_cache.dir
 /Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/rebuild_cache.dir
+/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/main_autogen_timestamp_deps.dir
+/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/main_autogen.dir

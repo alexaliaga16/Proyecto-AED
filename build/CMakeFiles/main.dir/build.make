@@ -69,13 +69,33 @@ include CMakeFiles/main.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/main.dir/flags.make
 
+main_autogen/timestamp: /opt/homebrew/share/qt/libexec/moc
+main_autogen/timestamp: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target main"
+	/opt/homebrew/bin/cmake -E cmake_autogen "/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/main_autogen.dir/AutogenInfo.json" ""
+	/opt/homebrew/bin/cmake -E touch "/Users/cardenas/Desktop/Proyecto aed/build/main_autogen/timestamp"
+
 CMakeFiles/main.dir/codegen:
 .PHONY : CMakeFiles/main.dir/codegen
+
+CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o: main_autogen/mocs_compilation.cpp
+CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o -MF CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o -c "/Users/cardenas/Desktop/Proyecto aed/build/main_autogen/mocs_compilation.cpp"
+
+CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/cardenas/Desktop/Proyecto aed/build/main_autogen/mocs_compilation.cpp" > CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.i
+
+CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/cardenas/Desktop/Proyecto aed/build/main_autogen/mocs_compilation.cpp" -o CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.s
 
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.o: /Users/cardenas/Desktop/Proyecto\ aed/main.cpp
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/main.cpp.o -MF CMakeFiles/main.dir/main.cpp.o.d -o CMakeFiles/main.dir/main.cpp.o -c "/Users/cardenas/Desktop/Proyecto aed/main.cpp"
 
 CMakeFiles/main.dir/main.cpp.i: cmake_force
@@ -89,7 +109,7 @@ CMakeFiles/main.dir/main.cpp.s: cmake_force
 CMakeFiles/main.dir/SparseMatrix.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/SparseMatrix.cpp.o: /Users/cardenas/Desktop/Proyecto\ aed/SparseMatrix.cpp
 CMakeFiles/main.dir/SparseMatrix.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/SparseMatrix.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/SparseMatrix.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/SparseMatrix.cpp.o -MF CMakeFiles/main.dir/SparseMatrix.cpp.o.d -o CMakeFiles/main.dir/SparseMatrix.cpp.o -c "/Users/cardenas/Desktop/Proyecto aed/SparseMatrix.cpp"
 
 CMakeFiles/main.dir/SparseMatrix.cpp.i: cmake_force
@@ -100,19 +120,40 @@ CMakeFiles/main.dir/SparseMatrix.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/SparseMatrix.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/cardenas/Desktop/Proyecto aed/SparseMatrix.cpp" -o CMakeFiles/main.dir/SparseMatrix.cpp.s
 
+CMakeFiles/main.dir/MainWindow.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/MainWindow.cpp.o: /Users/cardenas/Desktop/Proyecto\ aed/MainWindow.cpp
+CMakeFiles/main.dir/MainWindow.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/MainWindow.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/MainWindow.cpp.o -MF CMakeFiles/main.dir/MainWindow.cpp.o.d -o CMakeFiles/main.dir/MainWindow.cpp.o -c "/Users/cardenas/Desktop/Proyecto aed/MainWindow.cpp"
+
+CMakeFiles/main.dir/MainWindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/MainWindow.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/cardenas/Desktop/Proyecto aed/MainWindow.cpp" > CMakeFiles/main.dir/MainWindow.cpp.i
+
+CMakeFiles/main.dir/MainWindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/MainWindow.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/cardenas/Desktop/Proyecto aed/MainWindow.cpp" -o CMakeFiles/main.dir/MainWindow.cpp.s
+
 # Object files for target main
 main_OBJECTS = \
+"CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/main.dir/main.cpp.o" \
-"CMakeFiles/main.dir/SparseMatrix.cpp.o"
+"CMakeFiles/main.dir/SparseMatrix.cpp.o" \
+"CMakeFiles/main.dir/MainWindow.cpp.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
+main: CMakeFiles/main.dir/main_autogen/mocs_compilation.cpp.o
 main: CMakeFiles/main.dir/main.cpp.o
 main: CMakeFiles/main.dir/SparseMatrix.cpp.o
+main: CMakeFiles/main.dir/MainWindow.cpp.o
 main: CMakeFiles/main.dir/build.make
+main: /opt/homebrew/lib/QtWidgets.framework/Versions/A/QtWidgets
+main: /opt/homebrew/lib/QtGui.framework/Versions/A/QtGui
+main: /opt/homebrew/lib/QtCore.framework/Versions/A/QtCore
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,7 +164,7 @@ CMakeFiles/main.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/main.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/main.dir/clean
 
-CMakeFiles/main.dir/depend:
+CMakeFiles/main.dir/depend: main_autogen/timestamp
 	cd "/Users/cardenas/Desktop/Proyecto aed/build" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/cardenas/Desktop/Proyecto aed" "/Users/cardenas/Desktop/Proyecto aed" "/Users/cardenas/Desktop/Proyecto aed/build" "/Users/cardenas/Desktop/Proyecto aed/build" "/Users/cardenas/Desktop/Proyecto aed/build/CMakeFiles/main.dir/DependInfo.cmake" "--color=$(COLOR)"
 .PHONY : CMakeFiles/main.dir/depend
 

@@ -2,13 +2,14 @@
 
 struct Node
 {
+    int row;           // Número de fila de la celda (1-based)
+    char col;          // Letra de columna ('A'-'Z')
+    std::string value; // Contenido de la celda como texto
 
-    int row;
-    char col;
-    std::string value;
-    Node *nextInRow;
-    Node *nextInCol;
+    Node *nextInRow;   // Siguiente nodo en la misma fila, ordenado por columna
+    Node *nextInCol;   // Siguiente nodo en la misma columna, ordenado por fila
 
+    // Inicializa el nodo en posición (1, 'A') con valor vacío
     Node()
     {
         row = 1;
@@ -18,6 +19,7 @@ struct Node
         nextInCol = NULL;
     }
 
+    // Inicializa el nodo con la posición y valor dados
     Node(int r, char c, std::string v)
     {
         row = r;
